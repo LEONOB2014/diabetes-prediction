@@ -8,7 +8,6 @@ This is the capstone project 1 for the Machine Learning Zoomcamp 2023.
 - [Diabetes Prediction Capstone project.](#diabetes-prediction-capstone-project)
   - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
-  - [Getting started](#getting-started)
   - [Datasets](#datasets)
   - [Dependencies](#dependencies)
   - [Workflow](#workflow)
@@ -28,10 +27,6 @@ This is the capstone project 1 for the Machine Learning Zoomcamp 2023.
 ## [Project Overview](#project-overview)
 
 In a transition to a preventive health system, being able to identify risk of diabetes to implement an early warning system and also a preventive health campaign is paramount. There is a classical curative approach using clinical exams only when the symptoms of diabetes appear. Being able to implement it from non-intrusive measures based on behavioral risk factors carried on as part of a surveillance system might lead to reduce post-sickness attentional demand and those cost associated leading to a cost-effective and more humain health system. The objective of this capstone project is to be able to predict the probability and an early-warning risk alert based on the available dataset.
-
-## [Getting started](#getting-started)
-
-
 
 
 ## [Datasets](#datasets)
@@ -120,7 +115,6 @@ In the deployable model selection I have to take into account that the original 
 
 I encoded our best model (GradientBoostingClassifier) inside the `scripts/train.py` file which can be run using:
 ```
-cd scripts
 python ./src/train.py
 ```
 
@@ -131,12 +125,11 @@ The output of this script, which includes the model, can be found in: `models/mo
 I have written a Flask code for serving the model by exposing the port:9696, which can be run using:
 
 ```
-cd scripts
-python serving_diabetes.py
+python ./src/serving_diabetes.py
 ```
 or `gunicorn` as:
 ```
-cd scripts
+cd scr
 gunicorn --bind 0.0.0.0:9696 predict:app
 ```
 
@@ -170,7 +163,6 @@ patient = {'HighBP': 1.0,
 using the command:
 
 ```
-cd scripts
 python ./src/test_service.py
 # {'diabetes_probability': 0.661813345123, 'diabetes_intervention': True}
 ```
@@ -209,6 +201,7 @@ python predict-test.py
 
 ## [Directory structure](#dirctory-structure)
 ```bash
+.
 ├── data
 │   ├── codebook21_llcp-v2-508.pdf
 │   ├── df_train.csv
@@ -220,6 +213,7 @@ python predict-test.py
 │   ├── diabetes_day.png
 │   └── Screenshot from 2023-12-20 16-39-52.png
 ├── models
+│   ├── model_gbc2.pkl
 │   ├── model_gbc.pkl
 │   ├── model_rf.pkl
 │   └── xgboost_model.xgb
@@ -231,8 +225,11 @@ python predict-test.py
 ├── Pipfile.lock
 ├── Readme.md
 └── src
+    ├── predict.py
     ├── serving_diabetes.py
-    └── test_service.py
+    ├── test_service.py
+    └── train.py
+
 ```
 
 ## [Contributors](#contributors)
