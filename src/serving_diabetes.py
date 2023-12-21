@@ -7,6 +7,8 @@ from flask import Flask, request, jsonify
 
 with open('./models/model_gbc.pkl', 'rb') as f_in:
     model = pickle.load(f_in)
+    model = model.best_estimator_
+
 
 def predict_single(patient, model):
     y_pred = model.predict_proba(patient)[:, 1]

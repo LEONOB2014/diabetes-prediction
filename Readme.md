@@ -13,7 +13,7 @@ This is the capstone project 1 for the Machine Learning Zoomcamp 2023.
   - [Workflow](#workflow)
     - [1. Cloning the repository:](#1-cloning-the-repository)
     - [2. **Setting up the environment:**](#2-setting-up-the-environment)
-    - [3. Running `notebooks/EDA + Model_Training1.ipynb`](#3-running-notebookseda--model_training1ipynb)
+    - [3. Running `notebooks/EDA + Model_Training1.ipynb and notebooks/Model_training2_reduced_dataset.ipynb`](#3-running-notebookseda--model_training1ipynb-and-notebooksmodel_training2_reduced_datasetipynb)
     - [4. Training model](#4-training-model)
     - [5. Making predictions](#5-making-predictions)
     - [6. Containerizing the model](#6-containerizing-the-model)
@@ -92,9 +92,9 @@ pip install pipenv
 pipenv shell
 ```
 
-### 3. Running `notebooks/EDA + Model_Training1.ipynb`
+### 3. Running `notebooks/EDA + Model_Training1.ipynb and notebooks/Model_training2_reduced_dataset.ipynb`
 
-This notebook outlines the entire investigation and consists of the following steps [🚨 Skip this step, if you want to directly want to use the final configuration for training and/or final model for predictions]:
+The EDA + Model_Training1 notebook outlines the entire investigation and consists of the following steps [🚨 Skip this step, if you want to directly want to use the final configuration for training and/or final model for predictions]:
 
 - Data loading
 - Data cleaning and preparation
@@ -104,10 +104,20 @@ This notebook outlines the entire investigation and consists of the following st
 - Feature Engineering
 - Mutual information
 - Setting up a validation framwork and data splitting
-- Model Training and evaluation [experimentation and hyper-parameter tuning]
+- Model Training and evaluation [experimentation and hyper-parameter tuning] (Logistic Regression, XGBoost with hyper-parameter tuning and Deep Learning MLP)
 - Saving the trained models [in the [models](../models) directory]
-- Making predictions using the saved model
-- Testing Flask framework
+- Making predictions using saved models
+- Obtain a reduced dataset for training
+
+The Model_training2_reduced_dataset notebook is based on a filtered version of the dataset, using only the relevant features identified in the preliminary EDA. This notebook is focused only in training 2 models using Grid Search Cross-Validation for hyperparameter tuning (Random Forest and Gradient Boosting Classifier):
+
+- Data loading (Reduced dataset with better column naming)
+- Setting up a validation framwork and data splitting
+- Hyperparameter Space for exploration
+- Training models.
+- Evaluation and Feature Importance.
+- Saving models (binary format)
+
 
 ### 4. Training model
 
