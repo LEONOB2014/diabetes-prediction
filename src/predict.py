@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.impute import SimpleImputer
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV, cross_val_score, train_test_split
@@ -30,7 +31,7 @@ patient = {'HighBP': 1.0,
 
 
 
-def predict(patient=patient):
+def predict(patient):
     with open('./models/model_gbc.pkl', 'rb') as f_in:
         model = pickle.load(f_in)
 

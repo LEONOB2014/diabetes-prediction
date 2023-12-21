@@ -118,7 +118,7 @@ I encoded our best model (GradientBoostingClassifier) inside the `scripts/train.
 python ./src/train.py
 ```
 
-The output of this script, which includes the model, can be found in: `models/model_gbc2.pkl`. It has an accuracy of **0.75**. This is the model uses to make predictions in the next steps.
+The output of this script, which includes the model, can be found in: `models/model_gbc.pkl`. It has an accuracy of **0.75**. This is the model uses to make predictions in the next steps.
 
 ### 5. Making predictions
 
@@ -187,7 +187,6 @@ Once in the terminal is required to reproduce the **pipenv** environment
 ```
 pip install --upgrade pip
 pip install pipenv
-pip shell 
 ```
 
 Once the image is built, we need to expose the container port (9696) to the localhost port (9696) using:
