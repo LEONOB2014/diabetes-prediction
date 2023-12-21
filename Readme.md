@@ -10,6 +10,14 @@ This is the capstone project 1 for the Machine Learning Zoomcamp 2023.
   - [Project Overview](#project-overview)
   - [Getting started](#getting-started)
   - [Datasets](#datasets)
+  - [Dependencies](#dependencies)
+  - [Workflow](#workflow)
+    - [1. Cloning the repository:](#1-cloning-the-repository)
+    - [2. **Setting up the environment:**](#2-setting-up-the-environment)
+    - [3. Running `notebooks/EDA + Model_Training1.ipynb`](#3-running-notebookseda--model_training1ipynb)
+    - [4. Training model](#4-training-model)
+    - [5. Making predictions](#5-making-predictions)
+    - [6. Containerizing the model](#6-containerizing-the-model)
   - [Directory structure](#directory-structure)
   - [Contributors](#contributors)
   - [License](#license)
@@ -59,6 +67,142 @@ The CDC BRFSS Survey 2021, can be found on Kaggle Datsets [CDC BRFSS Survey 2021
 
 The CDC BRFSS Survey 2021 codebook with a detailed dictionary of its variables, description and codification, can be found on Kaggle Datsets [CDC BRFSS Survey CODEBOOK](https://www.cdc.gov/brfss/annual_data/2021/pdf/codebook21_llcp-v2-508.pdf). To learn more about the data, you can go to the official page [Centers for Disease Control and Prevention, 2021 BRFSS Survey Data and Documentation](https://www.cdc.gov/brfss/annual_data/annual_2021.html)
 
+## [Dependencies](#dependencies)
+
+The project requires the following dependencies to be installed:
+
+```
+pipenv
+Docker
+```
+
+## [Workflow](#workflow)
+
+To run this project locally, follow these steps:
+
+### 1. Cloning the repository: 
+
+
+```
+git clone https://github.com/LEONOB2014/diabetes-prediction
+```
+
+
+### 2. **Setting up the environment:**
+
+The easiest way to set up the environment is to use [Docker](https://www.docker.com/). I used **pipenv** to isolate the environment and reference the required dependencies to run not only the training and testing the model, but also to be able to run the full EDA and model experimantation jupyter notebooks. to run locally just:
+
+```
+pip install pipenv
+pipenv shell
+```
+
+### 3. Running `notebooks/EDA + Model_Training1.ipynb`
+
+This notebook outlines the entire investigation and consists of the following steps [🚨 Skip this step, if you want to directly want to use the final configuration for training and/or final model for predictions]:
+
+- Data loading
+- Data cleaning and preparation
+- Exploratory data analysis
+- Missing Values and imputation.
+- Correlation Analysis and identification of non informative features.
+- Feature Engineering
+- Mutual information
+- Setting up a validation framwork and data splitting
+- Model Training and evaluation [experimentation and hyper-parameter tuning]
+- Saving the trained models [in the [models](../models) directory]
+- Making predictions using the saved model
+- Testing Flask framework
+
+### 4. Training model
+
+We encode our best model (LGBMClassifier) inside the `scripts/train.py` file which can be run using:
+```
+cd scripts
+python ./src/train.py
+```
+
+The output of this script, which includes the model, can be found in: `models/model_gbc.pkl`. It have an accuracy of **0.75**. This is the model we use to make predictions in the next steps.
+
+### 5. Making predictions
+
+We have written a Flask code for serving the model by exposing the port:9696, which can be run using:
+
+```
+cd scripts
+python serving_diabetes.py
+```
+or `gunicorn` as:
+```
+cd scripts
+gunicorn --bind 0.0.0.0:9696 predict:app
+```
+
+We can use this to make an example prediction on the appointment:
+
+```
+patient = {'HighBP': 1.0,
+            'HighChol': 1.0,
+            'CholCheck': 1.0,
+            'BMI': 35.0,
+            'Smoker': 0.0,
+            'Stroke': 0.0,
+            'HeartDiseaseorAttack': 0.0,
+            'PhysActivity': 1.0,
+            'Fruits': 0.0,
+            'Veggies': 1.0,
+            'HvyAlcoholConsump': 1.0,
+            'AnyHealthcare': 1.0,
+            'NoDocbcCost': 0.0,
+            'GenHlth': 2.0,
+            'MentHlth': 0.0,
+            'PhysHlth': 0.0,
+            'DiffWalk': 0.0,
+            'Sex': 1.0,
+            'Age': 5.0,
+            'Education': 4.0,
+            'Income': 9.0
+ }
+```
+
+using the command:
+
+```
+cd scripts
+python ./src/test_service.py
+# {'diabetes_probability': 0.661813345123, 'diabetes_intervention': True}
+```
+
+This gives us a `no_show` class [0 or 1] as well as a probability.
+
+🚨 Always remember to `conda activate ml-zoomcamp` whenever opening a new terminal/tab.
+
+### 6. Containerizing the model
+
+Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `no-show-prediction`:
+
+```
+docker build -t no-show-prediction .
+```
+
+We can access the docker container via the terminal using:
+```
+docker run -it --rm --entrypoint=bash no-show-prediction
+```
+
+Once the image is built, we need to expose the container port (9696) to the localhost port (9696) using:
+
+```
+docker run -it --rm -p 9696:9696 no-show-prediction
+```
+
+We can now make a request in exactly the same way as Step 5:
+
+```
+cd scripts
+python predict-test.py
+# {'no_show': False, 'no_show_probability': 0.2880257379453167}
+```
 
 
 ## [Directory structure](#dirctory-structure)
