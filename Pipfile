@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+imblearn = "==0.0"
+keras = "==2.12.0"
+matplotlib = "==3.7.1"
+missingno = "==0.5.2"
+numpy = "==1.23.5"
+pandas = "==2.0.2"
+optuna = "==3.5.0"
+scikit-learn = "==1.2.2"
+tensorflow = "==2.12.0"
+xgboost = "==2.0.3"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
