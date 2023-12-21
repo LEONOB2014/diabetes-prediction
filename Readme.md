@@ -169,7 +169,6 @@ python ./src/test_service.py
 
 This gives us a `diabetes_intervention` class [0 or 1] as well as a probability of diabetes.
 
-🚨 Always remember to `conda activate ml-zoomcamp` whenever opening a new terminal/tab.
 
 ### 6. Containerizing the model
 
@@ -202,7 +201,7 @@ We can now make a request in exactly the same way as Step 5:
 ```
 
 python .src/predict.py
-# {'no_show': False, 'no_show_probability': 0.2880257379453167}
+# {'diabetes_intervention': False, 'diabetes_probability': 0.2880257379453167}
 ```
 
 
