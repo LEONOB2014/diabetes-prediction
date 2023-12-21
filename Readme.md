@@ -173,27 +173,27 @@ python ./src/test_service.py
 # {'diabetes_probability': 0.661813345123, 'diabetes_intervention': True}
 ```
 
-This gives us a `no_show` class [0 or 1] as well as a probability.
+This gives us a `diabetes_intervention` class [0 or 1] as well as a probability of diabetes.
 
 🚨 Always remember to `conda activate ml-zoomcamp` whenever opening a new terminal/tab.
 
 ### 6. Containerizing the model
 
-Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `no-show-prediction`:
+Run the `Dockerfile` using [make sure that the docker daemon is running?] to build the image `diabetes-prediction`:
 
 ```
-docker build -t no-show-prediction .
+docker build -t diabetes-prediction .
 ```
 
 We can access the docker container via the terminal using:
 ```
-docker run -it --rm --entrypoint=bash no-show-prediction
+docker run -it --rm --entrypoint=bash diabetes-prediction
 ```
 
 Once the image is built, we need to expose the container port (9696) to the localhost port (9696) using:
 
 ```
-docker run -it --rm -p 9696:9696 no-show-prediction
+docker run -it --rm -p 9696:9696 diabetes-prediction
 ```
 
 We can now make a request in exactly the same way as Step 5:
