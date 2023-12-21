@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify
 
 
 
-with open('../models/model_gbc.pkl', 'rb') as f_in:
+with open('./models/model_gbc2.pkl', 'rb') as f_in:
     model = pickle.load(f_in)
 
 def predict_single(patient, model):

@@ -116,17 +116,19 @@ This notebook outlines the entire investigation and consists of the following st
 
 ### 4. Training model
 
-We encode our best model (LGBMClassifier) inside the `scripts/train.py` file which can be run using:
+In the deployable model selection I have to take into account that the original CDC BRFSS Survey 2021 stored in Kaggle is not raw survey data, but instead a processed data in which new variables are derived from the original, so many others are results of grouping of other features and a lot of non-informative variables. In light of the EDA and refactored to be able to use the model on demand and based on some objective selected variables it was decided to deploy the model based on relevant features over a subset of features. It is expected that in deployment you could survey the specific variables to make use of this model.
+
+I encoded our best model (GradientBoostingClassifier) inside the `scripts/train.py` file which can be run using:
 ```
 cd scripts
 python ./src/train.py
 ```
 
-The output of this script, which includes the model, can be found in: `models/model_gbc.pkl`. It have an accuracy of **0.75**. This is the model we use to make predictions in the next steps.
+The output of this script, which includes the model, can be found in: `models/model_gbc2.pkl`. It has an accuracy of **0.75**. This is the model uses to make predictions in the next steps.
 
 ### 5. Making predictions
 
-We have written a Flask code for serving the model by exposing the port:9696, which can be run using:
+I have written a Flask code for serving the model by exposing the port:9696, which can be run using:
 
 ```
 cd scripts
