@@ -10,7 +10,7 @@ COPY ["Pipfile", "Pipfile.lock", "./"]
 RUN pipenv install --deploy --system && \
     rm -rf /root/.cache
 
-COPY ["./scr", "./data", "./models/model_gbc.pkl", "./models/"]
+COPY ["./src", "./data", "./models/model_gbc.pkl", "./models/"]
 
 EXPOSE 9696
 
