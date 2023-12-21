@@ -5,19 +5,15 @@
 This is the capstone project 1 for the Machine Learning Zoomcamp 2023.
 
 ## Table of Contents
-- [Project Overview](#project-overview)
-- [Getting started](#getting-started)
-- [Datasets](#datasets)
-- [Model](#model)
-- [Dependencies](#dependencies)
-- [Workflow](#workflow)
-- [Directory structure](#dirctory-structure)
-- [Follow-up Work](#follow-up-work)
-- [Contributors](#contributors)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
-- [Contributions and Feedback](#contributions-and-feedback)
-- [Key Concepts](#key-concepts)
+- [Diabetes Prediction Capstone project.](#diabetes-prediction-capstone-project)
+  - [Table of Contents](#table-of-contents)
+  - [Project Overview](#project-overview)
+  - [Getting started](#getting-started)
+  - [Datasets](#datasets)
+  - [Directory structure](#directory-structure)
+  - [Contributors](#contributors)
+  - [License](#license)
+  - [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -62,3 +58,43 @@ The most relevant fields in the dataset and whose descriptors are in the data di
 The CDC BRFSS Survey 2021, can be found on Kaggle Datsets [CDC BRFSS Survey 2021](https://www.kaggle.com/datasets/dariushbahrami/cdc-brfss-survey-2021). All the dataset files can be downloaded and decompressed from there and stored in the ./data folder for reproducibility of this project.
 
 The CDC BRFSS Survey 2021 codebook with a detailed dictionary of its variables, description and codification, can be found on Kaggle Datsets [CDC BRFSS Survey CODEBOOK](https://www.cdc.gov/brfss/annual_data/2021/pdf/codebook21_llcp-v2-508.pdf). To learn more about the data, you can go to the official page [Centers for Disease Control and Prevention, 2021 BRFSS Survey Data and Documentation](https://www.cdc.gov/brfss/annual_data/annual_2021.html)
+
+
+
+## [Directory structure](#dirctory-structure)
+```bash
+├── data
+│   ├── codebook21_llcp-v2-508.pdf
+│   ├── df_train.csv
+│   └── LLCP2021.csv
+├── Dockerfile
+├── LICENSE
+├── media
+│   ├── DIABETE4.png
+│   ├── diabetes_day.png
+│   └── Screenshot from 2023-12-20 16-39-52.png
+├── models
+│   ├── model_gbc.pkl
+│   ├── model_rf.pkl
+│   └── xgboost_model.xgb
+├── notebooks
+│   ├── EDA + Model_Training1.ipynb
+│   ├── heatmap.png
+│   └── Model_training2_reduced_dataset.ipynb
+├── Pipfile
+├── Pipfile.lock
+├── Readme.md
+└── src
+    ├── serving_diabetes.py
+    └── test_service.py
+```
+
+## [Contributors](#contributors)
+Andrés L. Becerra, <aleonardobecerragmail.com>
+
+## [License](#license)
+This project is licensed under the [MIT License](./LICENSE).
+
+## [Acknowledgments](#acknowledgments)
+* [Alexey Grigorev](https://github.com/alexeygrigorev)
+* [DataTalks.Club](https://datatalks.club/)
