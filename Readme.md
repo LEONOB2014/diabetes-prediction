@@ -184,6 +184,13 @@ We can access the docker container via the terminal using:
 docker run -it --rm --entrypoint=bash diabetes-prediction
 ```
 
+Once in the terminal is required to reproduce the **pipenv** environment
+```
+pip install --upgrade pip
+pip install pipenv
+pip shell 
+```
+
 Once the image is built, we need to expose the container port (9696) to the localhost port (9696) using:
 
 ```
@@ -193,8 +200,8 @@ docker run -it --rm -p 9696:9696 diabetes-prediction
 We can now make a request in exactly the same way as Step 5:
 
 ```
-cd scripts
-python predict-test.py
+
+python .src/predict.py
 # {'no_show': False, 'no_show_probability': 0.2880257379453167}
 ```
 
